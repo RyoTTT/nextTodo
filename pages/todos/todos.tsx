@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { TodoList } from '../../atoms/atoms'
 
-type todotype = [{
+type TodoType = {
   id:number,
   text:string,
   state:number
-}]
+}
 
 const  Todos= () => {
-const [todos,setTodos] = useRecoilState<todotype>(TodoList);
+const [todos,setTodos] = useRecoilState<TodoType[]>(TodoList);
 const [todoText,setTodoText] = useState("");
 const [todoId,setTodoId] = useState(1);
 
@@ -19,18 +19,18 @@ const textSet = (e:React.ChangeEvent<HTMLInputElement>) => {
 }
 
 const addTodoList = () => {
-    const newTodo:todotype = {
+    const newTodo:TodoType = {
         id:todoId,
         text:todoText,
         state:1
     }
-    setTodos(...todos,newTodo)
+    setTodos([...todos,newTodo])
     console.log(todos)
     setTodoId(todoId + 1);
 }
   return (
     <div>
-        <input onChange={textSet} type="text" value={todos.text}></input>
+        <input onChange={textSet} type="text" value={todoText}></input>
         <button onClick={addTodoList}>追加</button>
     </div>
   )
