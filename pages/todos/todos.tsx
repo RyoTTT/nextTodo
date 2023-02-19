@@ -8,7 +8,7 @@ const Todos = () => {
   const [todoText, setTodoText] = useState("");
   const [todoDetails, setTodoDetails] = useState<string>("");
   const [todoDate, setTodoDate] = useState<string>("");
-  const [todoId, setTodoId] = useState(1);
+  const [todoId, setTodoId] = useState<number>(1);
 
   const textSet = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -37,6 +37,9 @@ const Todos = () => {
     setTodos([...todos, newTodo]);
     console.log(todos);
     setTodoId(todoId + 1);
+    setTodoText("");
+    setTodoDetails("");
+    setTodoDate("");
   };
   return (
     <>
