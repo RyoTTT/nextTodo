@@ -16,8 +16,7 @@ const detail = () => {
             <p>{todo.date}</p>
 
             <button>削除</button>
-            //todoを遷移先ページに渡したい
-            <Link href="/todos/id"><button>編集</button></Link>
+            <Link href={{ pathname: '/todos/id', query: { ...todo } }}>確認</Link>
         </div>
       ))}
     </div>
