@@ -2,7 +2,8 @@ import { TodoList, TodoType } from '@/atoms/atoms';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react'
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
+
 
 const id = () => {
     const [editTodo, setEditTodo] = useState<TodoType>();
@@ -10,7 +11,7 @@ const id = () => {
     const [editDetail,  setEditDetail] = useState<string>("");
     const [editDate , setEditDate] = useState<string>("");
 
-    const todos = useRecoilValue(TodoList);
+    const [todos,setTodos] = useRecoilState(TodoList);
     const router = useRouter();
 
     const Edittext = (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -27,9 +28,9 @@ const id = () => {
     }
     const updateTodo = () => {
         const newTodo:TodoType = {
-            id:router.query.id,
+            id:Number(router.query.id),
             text:editText,
-            state:router.query.state,
+            state:Number(router.query.state),
             detail:editDetail,
             date:editDate
         }

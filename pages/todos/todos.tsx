@@ -5,7 +5,7 @@ import { TodoList, TodoType } from "../../atoms/atoms";
 
 const Todos = () => {
   const [todos, setTodos] = useRecoilState<TodoType[]>(TodoList);
-  const [todoText, setTodoText] = useState("");
+  const [todoText, setTodoText] = useState<string>("");
   const [todoDetails, setTodoDetails] = useState<string>("");
   const [todoDate, setTodoDate] = useState<string>("");
   const [todoId, setTodoId] = useState<number>(1);
