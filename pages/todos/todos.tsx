@@ -35,7 +35,6 @@ const Todos = () => {
       date: todoDate,
     };
     setTodos([...todos, newTodo]);
-    console.log(todos);
     setTodoId(todoId + 1);
     setTodoText("");
     setTodoDetails("");

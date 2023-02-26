@@ -35,6 +35,12 @@ const id = () => {
             date:editDate
         }
         setEditTodo(newTodo);
+        setTodos((todos)=>todos.map((todo:any)=> (
+        todo.id === Number(router.query.id) ? editTodo : todo
+        )
+        )
+        )
+        console.log(todos);
     }
   return (
     <div>
@@ -52,4 +58,4 @@ const id = () => {
   )
 }
 
-export default id
+export default id;
