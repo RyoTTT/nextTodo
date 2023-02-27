@@ -5,8 +5,7 @@ import React, { useState } from 'react'
 import { useRecoilState } from 'recoil';
 
 
-const id = () => {
-    const [editTodo, setEditTodo] = useState<TodoType>();
+const Id = () => {
     const [editText,setEditText] = useState<string>("");
     const [editDetail,  setEditDetail] = useState<string>("");
     const [editDate , setEditDate] = useState<string>("");
@@ -34,9 +33,8 @@ const id = () => {
             detail:editDetail,
             date:editDate
         }
-        setEditTodo(newTodo);
-        setTodos((todos)=>todos.map((todo:any)=> (
-        todo.id === Number(router.query.id) ? editTodo : todo
+        setTodos((todos)=>todos.map((todo:any) => (
+        todo.id === Number(router.query.id) ? newTodo : todo
         )
         )
         )
@@ -58,4 +56,4 @@ const id = () => {
   )
 }
 
-export default id;
+export default Id;

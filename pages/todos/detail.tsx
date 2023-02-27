@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { TodoList, TodoType } from "../../atoms/atoms";
 
-const detail = () => {
+const Detail = () => {
   const [todos,setTodos] = useRecoilState(TodoList);
   const [displayedTodoList, setDisplayedTodoList] = useState<any>([]);
   const [filteredTodoList, setFilteredTodoList] = useState<any>([]);
@@ -14,7 +14,7 @@ const detail = () => {
     if (filteredTodoList.length > 0) {
       setDisplayedTodoList([...filteredTodoList])
     } else if (filterState === true && filteredTodoList.length === 0) {
-      setDisplayedTodoList([]);
+      setDisplayedTodoList([...todos]);
     }
     else {
       setDisplayedTodoList(todos);
@@ -130,9 +130,7 @@ const detail = () => {
           <button onClick={() => todoDelete(todo.id)}>削除</button>
             <button onClick={()=>todoStateChange1(todo)}>未完了</button>
             <button onClick={()=>todoStateChange2(todo)}>進行中</button>
-            <button onClick={()=>todoStateChange3(todo)}>完了</button>
-
-          
+            <button onClick={()=>todoStateChange3(todo)}>完了</button>         
           <Link href={{ pathname: "/todos/id", query: { ...todo } }}>編集する</Link>
         </div>
       ))}
@@ -141,4 +139,4 @@ const detail = () => {
   );
 };
 
-export default detail;
+export default Detail;

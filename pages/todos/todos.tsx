@@ -1,3 +1,4 @@
+import { signOut } from "@/firebase";
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
@@ -40,8 +41,12 @@ const Todos = () => {
     setTodoDetails("");
     setTodoDate("");
   };
+
   return (
     <>
+    <div>
+      <button onClick={signOut}>ログアウト</button>
+    </div>
     <div>
       <input onChange={textSet} type="text" value={todoText}></input>
       <textarea onChange={detailSet}></textarea>
