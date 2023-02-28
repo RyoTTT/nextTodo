@@ -41,7 +41,7 @@ export const signOut = async () => {
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      Navigate("pages/todos/todos.tsx")
+      console.log("user is true")
       // ...
     } else {
 

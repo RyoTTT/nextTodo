@@ -1,4 +1,4 @@
-import { googleSignin, signinWithEmailAndPassword } from '@/firebase';
+import { googleSignin, signinWithEmailAndPassword } from '../firebase';
 import Head from 'next/head'
 import Link from 'next/link'
 import { useState } from 'react';
