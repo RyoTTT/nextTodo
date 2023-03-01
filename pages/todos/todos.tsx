@@ -1,10 +1,17 @@
-
 import { getAuth, signOut } from "firebase/auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { TodoList, TodoType } from "../../atoms/atoms";
+import {
+  Center,
+  Input,
+  Textarea,
+  Button,
+  VStack,
+  Text,
+} from "@chakra-ui/react";
 
 const Todos = () => {
   const router = useRouter();
@@ -46,24 +53,28 @@ const Todos = () => {
     setTodoDate("");
   };
 
-const LogOut = async() => {
-  await signOut(auth);
-  await router.push('/');
-}
+  const LogOut = async () => {
+    await signOut(auth);
+    await router.push("/");
+  };
 
   return (
     <>
-    <div>
-      <button onClick={LogOut}>ログアウト</button>
-    </div>
-    <div>
-      <input onChange={textSet} type="text" value={todoText}></input>
-      <textarea onChange={detailSet}></textarea>
-      <input type="date" onChange={dateSet}></input>
-      <button onClick={addTodoList}>追加</button>
-      <Link href="/todos/detail">確認</Link>
-    </div>
-
+      <div>
+        <Button onClick={LogOut}>←ログアウト</Button>
+      </div>
+      <Center>
+        <VStack w="450px">
+          <Text fontSize="25px" margin="20px">TODOを追加する</Text>
+          <Input onChange={textSet} type="text" value={todoText} placeholder="タイトル"/>
+          <Textarea onChange={detailSet} placeholder="詳細"/>
+          <Input type="date" onChange={dateSet} />
+          <Button onClick={addTodoList} float="right">追加</Button>
+        </VStack>
+      </Center>
+      <Center w="100px"float="right">
+      <Button padding="10px 10px"><Link href="/todos/detail">TODOリストへ</Link></Button>
+      </Center>
     </>
   );
 };

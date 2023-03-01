@@ -1,31 +1,52 @@
-import { useRouter } from 'next/router';
-import React, { useState } from 'react';
-import { app } from '../firebase';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { app } from "../firebase";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { Center, Input, Text, Button } from "@chakra-ui/react";
 
 const Subscribe = () => {
-    const router = useRouter();
-    const auth = getAuth(app);
-    const [email,setEmail] = useState("");
-    const [password,setPassword] = useState("");
+  const router = useRouter();
+  const auth = getAuth(app);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-
-    const subscribe = async (e:React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        await createUserWithEmailAndPassword(auth,email,password);
-        router.push('/');
-    }
+  const subscribe = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await createUserWithEmailAndPassword(auth, email, password);
+    router.push("/");
+  };
 
   return (
     <div>
-        <h1>ユーザー登録</h1>
+      <Center>
+        <Text fontSize="30px" marginBottom="10px">
+          ユーザー登録
+        </Text>
+      </Center>
+      <Center>
         <form onSubmit={subscribe}>
-            <input type="text" value={email} onChange={(e)=>setEmail(e.target.value)} />
-            <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} />
-            <button type="submit">登録</button>
-        </form>
-    </div>
-  )
-}
+          <Input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            marginBottom="20px"
+          />
 
-export default Subscribe
+          <Input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password(6文字以上)"
+            marginBottom="20px"
+          />
+
+          <Button type="submit" float="right" color="green">
+            登録
+          </Button>
+        </form>
+      </Center>
+    </div>
+  );
+};
+
+export default Subscribe;
