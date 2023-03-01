@@ -1,10 +1,14 @@
-import { signOut } from "@/firebase";
+
+import { getAuth, signOut } from "firebase/auth";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { TodoList, TodoType } from "../../atoms/atoms";
 
 const Todos = () => {
+  const router = useRouter();
+  const auth = getAuth();
   const [todos, setTodos] = useRecoilState<TodoType[]>(TodoList);
   const [todoText, setTodoText] = useState<string>("");
   const [todoDetails, setTodoDetails] = useState<string>("");
@@ -42,10 +46,15 @@ const Todos = () => {
     setTodoDate("");
   };
 
+const LogOut = async() => {
+  await signOut(auth);
+  await router.push('/');
+}
+
   return (
     <>
     <div>
-      <button onClick={signOut}>ログアウト</button>
+      <button onClick={LogOut}>ログアウト</button>
     </div>
     <div>
       <input onChange={textSet} type="text" value={todoText}></input>

@@ -1,16 +1,26 @@
-import { googleSignin, signinWithEmailAndPassword } from '../firebase';
+import { app, provider } from '@/firebase';
+import { getAuth, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import Head from 'next/head'
 import Link from 'next/link'
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 
 export default function Home() {
+  const router = useRouter();
+  const auth = getAuth(app);
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
 
-  const signin = async (e:any) => {
-      e.preventDefault();
-      const user = await signinWithEmailAndPassword(email,password);
+  const signin = async (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await signInWithEmailAndPassword(auth,email,password);
+    router.push('/todos/todos');
+  }
+
+  const googleSignin = async() => {
+    await signInWithPopup(auth,provider);
+    router.push('/todos/todos');
   }
   return (
     <>

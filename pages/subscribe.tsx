@@ -1,14 +1,19 @@
-import React, { useState } from 'react'
-import { signupWithEmailAndPassword } from '@/firebase';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
+import { app } from '../firebase';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 const Subscribe = () => {
+    const router = useRouter();
+    const auth = getAuth(app);
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
-    const subscribe = async (e:any) => {
+
+    const subscribe = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const user = await signupWithEmailAndPassword(email,password);
-        console.log(user);
+        await createUserWithEmailAndPassword(auth,email,password);
+        router.push('/');
     }
 
   return (
