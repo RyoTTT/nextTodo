@@ -69,7 +69,7 @@ const Todos = () => {
           <Input onChange={textSet} type="text" value={todoText} placeholder="タイトル"/>
           <Textarea onChange={detailSet} placeholder="詳細"/>
           <Input type="date" onChange={dateSet} />
-          <Button onClick={addTodoList} float="right">追加</Button>
+          <Button onClick={addTodoList} float="right" backgroundColor="green">追加</Button>
         </VStack>
       </Center>
       <Center w="100px"float="right">

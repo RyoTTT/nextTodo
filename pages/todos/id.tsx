@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react'
 import { useRecoilState } from 'recoil';
+import {Button ,Text, Heading, Center, Box, Input, Textarea} from '@chakra-ui/react';
 
 
 const Id = () => {
@@ -41,18 +42,29 @@ const Id = () => {
         console.log(todos);
     }
   return (
-    <div>
-        <h1>編集</h1>
-        <p>編集するTODO</p>
-        <p>タイトル:{router.query.text}</p>
-        <p>詳細:{router.query.detail}</p>
-        <p>日付:{router.query.date}</p>
-        <input type="text" onChange={Edittext}></input>
-        <textarea onChange={EditDetail}></textarea>
-        <input type="date" onChange={EditDate}></input>
-        <button onClick={updateTodo}>更新</button>
-        <Link href="/todos/detail">キャンセル</Link>
-    </div>
+    <>
+        <Center margin="20px">
+        <Heading>編集ページ</Heading>
+        </Center>
+    <Center display="flex">
+    <Box >
+        <Text fontSize="20px">編集するTODO</Text>
+        <Text fontSize="20px">タイトル:{router.query.text}</Text>
+        <Text fontSize="20px">詳細:{router.query.detail}</Text>
+        <Text fontSize="20px">日付:{router.query.date}</Text>
+    </Box>
+    <Box w="400px" >
+        <Text fontSize="20px">編集後のTODO</Text>
+        <Input type="text" onChange={Edittext}></Input>
+        <Textarea onChange={EditDetail} height="10px"></Textarea>
+        <Input type="date" onChange={EditDate}></Input>
+    </Box>
+    </Center> 
+    <Box float="right" marginTop="20px">  
+        <Button onClick={updateTodo}><Link href="/todos/detail">更新</Link></Button>
+        <Button><Link href="/todos/detail">キャンセル</Link></Button>
+        </Box> 
+    </>
   )
 }
 
