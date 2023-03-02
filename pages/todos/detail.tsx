@@ -2,7 +2,16 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { TodoList } from "../../atoms/atoms";
-import { MenuItem , MenuList, Text, Button ,Menu,MenuButton,Grid,GridItem} from '@chakra-ui/react';
+import {
+  MenuItem,
+  MenuList,
+  Text,
+  Button,
+  Menu,
+  MenuButton,
+  Grid,
+  GridItem,
+} from "@chakra-ui/react";
 
 const Detail = () => {
   const [todos, setTodos] = useRecoilState(TodoList);
@@ -108,44 +117,75 @@ const Detail = () => {
     <>
       <div>
         <Menu>
-        <MenuButton as={Button}>絞り込み</MenuButton>
-        <MenuList>
-        <MenuItem onClick={() => todoFilter1(todos)}>未完了</MenuItem>
-        <MenuItem onClick={() => todoFilter2(todos)}>進行中</MenuItem>
-        <MenuItem onClick={() => todoFilter3(todos)}>完了</MenuItem>
-        </MenuList>
+          <MenuButton as={Button}>絞り込み</MenuButton>
+          <MenuList>
+            <MenuItem onClick={() => todoFilter1(todos)}>未完了</MenuItem>
+            <MenuItem onClick={() => todoFilter2(todos)}>進行中</MenuItem>
+            <MenuItem onClick={() => todoFilter3(todos)}>完了</MenuItem>
+          </MenuList>
         </Menu>
-        <Button onClick={resetTodoList} marginRight="10px" marginLeft="10px">戻す</Button>
-        <Button onClick={() => listSort(todos)} marginRight="10px">並び替え</Button>
-        <Button marginRight="10px"><Link href="/todos/todos">TODO追加へ</Link></Button>
+        <Button onClick={resetTodoList} marginRight="10px" marginLeft="10px">
+          戻す
+        </Button>
+        <Button onClick={() => listSort(todos)} marginRight="10px">
+          並び替え
+        </Button>
+        <Button marginRight="10px">
+          <Link href="/todos/todos">TODO追加へ</Link>
+        </Button>
       </div>
       <div>
-        <Grid templateColumns='repeat(20,3fr)'gap={10}>{displayedTodoList.map((todo: any) => (
-          <GridItem key={todo.id} w="350px" border="ridge" borderColor="brue">
-            <Text fontSize="23px" fontWeight="bold">{todo.text}</Text>
-            <Text fontSize="15px">詳細:{todo.detail}</Text>
-            <Text>進行状況:
-              {todo.state === 1
-                ? "未完了"
-                : todo.state === 2
-                ? "進行中"
-                : "完了"}
-            </Text>
-            <Text>{todo.date}</Text>
-            <Menu >
-        <MenuButton as={Button} marginRight="10px" backgroundColor="#66ffff">進行状態変更</MenuButton>
-        <MenuList marginRight="10px">
-        <MenuItem onClick={() => todoStateChange1(todo)}>未完了</MenuItem>
-        <MenuItem onClick={() => todoStateChange2(todo)}>進行中</MenuItem>
-        <MenuItem onClick={() => todoStateChange3(todo)}>完了</MenuItem>
-        </MenuList>
-        </Menu>
-        <Button onClick={()=>todoDelete(todo)} marginRight="10px" backgroundColor="yellow">削除</Button>
-            <Button backgroundColor="#ff367f"><Link href={{ pathname: "/todos/id", query: { ...todo } }}>
-              編集する
-            </Link></Button>
-          </GridItem>
-        ))}</Grid>
+        <Grid templateColumns="repeat(20,3fr)" gap={10}>
+          {displayedTodoList.map((todo: any) => (
+            <GridItem key={todo.id} w="350px" border="ridge" borderColor="brue">
+              <Text fontSize="23px" fontWeight="bold">
+                {todo.text}
+              </Text>
+              <Text fontSize="15px">詳細:{todo.detail}</Text>
+              <Text>
+                進行状況:
+                {todo.state === 1
+                  ? "未完了"
+                  : todo.state === 2
+                  ? "進行中"
+                  : "完了"}
+              </Text>
+              <Text>{todo.date}</Text>
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  marginRight="10px"
+                  backgroundColor="#66ffff"
+                >
+                  進行状態変更
+                </MenuButton>
+                <MenuList marginRight="10px">
+                  <MenuItem onClick={() => todoStateChange1(todo)}>
+                    未完了
+                  </MenuItem>
+                  <MenuItem onClick={() => todoStateChange2(todo)}>
+                    進行中
+                  </MenuItem>
+                  <MenuItem onClick={() => todoStateChange3(todo)}>
+                    完了
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+              <Button
+                onClick={() => todoDelete(todo)}
+                marginRight="10px"
+                backgroundColor="yellow"
+              >
+                削除
+              </Button>
+              <Button backgroundColor="#ff367f">
+                <Link href={{ pathname: "/todos/id", query: { ...todo } }}>
+                  編集する
+                </Link>
+              </Button>
+            </GridItem>
+          ))}
+        </Grid>
       </div>
     </>
   );

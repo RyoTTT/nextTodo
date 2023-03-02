@@ -65,15 +65,26 @@ const Todos = () => {
       </div>
       <Center>
         <VStack w="450px">
-          <Text fontSize="25px" margin="20px">TODOを追加する</Text>
-          <Input onChange={textSet} type="text" value={todoText} placeholder="タイトル"/>
-          <Textarea onChange={detailSet} placeholder="詳細"/>
+          <Text fontSize="25px" margin="20px">
+            TODOを追加する
+          </Text>
+          <Input
+            onChange={textSet}
+            type="text"
+            value={todoText}
+            placeholder="タイトル"
+          />
+          <Textarea onChange={detailSet} placeholder="詳細" />
           <Input type="date" onChange={dateSet} />
-          <Button onClick={addTodoList} float="right" backgroundColor="green">追加</Button>
+          <Button onClick={addTodoList} float="right" backgroundColor="green">
+            追加
+          </Button>
         </VStack>
       </Center>
-      <Center w="100px"float="right">
-      <Button padding="10px 10px"><Link href="/todos/detail">TODOリストへ</Link></Button>
+      <Center w="100px" float="right">
+        <Button padding="10px 10px">
+          <Link href="/todos/detail">TODOリストへ</Link>
+        </Button>
       </Center>
     </>
   );
