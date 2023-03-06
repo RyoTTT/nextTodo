@@ -74,8 +74,8 @@ const Todos = () => {
             value={todoText}
             placeholder="タイトル"
           />
-          <Textarea onChange={detailSet} placeholder="詳細" />
-          <Input type="date" onChange={dateSet} />
+          <Textarea onChange={detailSet} placeholder="詳細" value={todoDetails}/>
+          <Input type="date" onChange={dateSet} value={todoDate}/>
           <Button onClick={addTodoList} float="right" backgroundColor="green">
             追加
           </Button>

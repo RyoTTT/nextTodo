@@ -53,28 +53,43 @@ const Id = () => {
       <Center margin="20px">
         <Heading>編集ページ</Heading>
       </Center>
-      <Center display="flex">
-        <Box>
+      <Center>
+      <Box display="flex" gap="10px">
+        <Box w="400px">
           <Text fontSize="20px">編集するTODO</Text>
-          <Text fontSize="20px">タイトル:{router.query.text}</Text>
-          <Text fontSize="20px">詳細:{router.query.detail}</Text>
-          <Text fontSize="20px">日付:{router.query.date}</Text>
+          <Box>
+            <Text>タイトル:</Text>
+            <Input isReadOnly value={router.query.text} />
+          </Box>
+          <Box>
+            <Text>詳細:</Text>
+            <Textarea isReadOnly value={router.query.detail}></Textarea>
+          </Box>
+          <Box>
+            <Text>日付:</Text>
+            <Input isReadOnly value={router.query.date} />
+          </Box>
         </Box>
         <Box w="400px">
           <Text fontSize="20px">編集後のTODO</Text>
+          <Text>タイトル:</Text>
           <Input type="text" onChange={Edittext}></Input>
+          <Text>詳細:</Text>
           <Textarea onChange={EditDetail} height="10px"></Textarea>
+          <Text>日付:</Text>
           <Input type="date" onChange={EditDate}></Input>
         </Box>
+      </Box>
       </Center>
-      <Box float="right" marginTop="20px">
-        <Button onClick={updateTodo}>
+      <Box float="right" marginTop="20px" marginRight="270px">
+        <Button onClick={updateTodo} marginRight="10px" backgroundColor="green">
           <Link href="/todos/detail">更新</Link>
         </Button>
         <Button>
           <Link href="/todos/detail">キャンセル</Link>
         </Button>
       </Box>
+      
     </>
   );
 };
